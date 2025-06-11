@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+sqlalchemy[asyncpg]
+psycopg2-binary
+alembic
+python-dotenv
+requests
+yt-dlp
+google-api-python-client
+oauth2client
+openai
+tiktoken
