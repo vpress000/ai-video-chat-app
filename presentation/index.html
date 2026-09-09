@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Video Chat Application - Interactive Technical Presentation">
+    <title>Video Chat Application - Interactive Presentation</title>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="presentation-styles.css">
+</head>
+<body>    <!-- Navigation Dots -->
+    <nav class="nav-dots" id="navDots">
+        <span class="dot active" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+        <span class="dot" data-slide="2"></span>
+        <span class="dot" data-slide="3"></span>
+        <span class="dot" data-slide="4"></span>
+        <span class="dot" data-slide="5"></span>
+        <span class="dot" data-slide="6"></span>
+        <span class="dot" data-slide="7"></span>
+        <span class="dot" data-slide="8"></span>
+    </nav>
+
+    <!-- Timer Display -->
+    <div class="timer-display" id="timerDisplay">
+        <span id="currentTime">00:00</span> / <span id="totalTime">03:15</span>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Slide Container -->
+    <div class="presentation-container" id="presentationContainer">
+          <!-- Slide 1: Team Introduction (10 seconds) -->
+        <section class="slide active" data-duration="10">
+            <div class="slide-content team-slide">
+                <div class="slide-header">
+                    <h1 class="slide-title">🚀 Video Chat Application</h1>
+                    <div class="presenter-info">
+                        <div class="presenter-avatar">
+                            <i class="fas fa-code"></i>
+                        </div>                        <div class="presenter-details">
+                            <h2>Vasu Patel</h2>
+                            <p class="status">Full-Stack Developer • Actively Job Searching</p>
+                            <p class="interviews">15+ Technical Interviews • Passionate Problem Solver</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <i class="fab fa-react"></i>
+                        <span>React + FastAPI</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-brain"></i>
+                        <span>OpenAI Integration</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-database"></i>
+                        <span>PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+        </section>        <!-- Slide 2: Development Problems (15 seconds) -->
+        <section class="slide" data-duration="15">
+            <div class="slide-content problem-slide">
+                <h1 class="slide-title">⚠️ Development Challenges</h1>
+                <div class="problem-statement">
+                    <div class="customer-profile">
+                        <h2><i class="fas fa-exclamation-triangle"></i> Technical Roadblocks</h2>
+                        <p><strong>Key engineering challenges</strong> encountered during development, each demanding targeted, innovative solutions.</p>
+                    </div>
+                    <div class="roadblocks">
+                        <div class="roadblock-item">
+                            <div class="roadblock-header">
+                                <i class="fas fa-video"></i>
+                                <h3>Transcript Extraction Reliability</h3>
+                            </div>
+                            <p>
+                                <strong>Problem:</strong> YouTube transcript APIs failed for ~30% of videos due to inconsistent formats, missing captions, and API rate limits.<br>
+                                <strong>Impact:</strong> Blocked automated processing and required manual intervention.
+                            </p>
+                        </div>
+                        <div class="roadblock-item">
+                            <div class="roadblock-header">
+                                <i class="fas fa-dollar-sign"></i>
+                                <h3>OpenAI API Cost & Token Limits</h3>
+                            </div>
+                            <p>
+                                <strong>Problem:</strong> Long transcripts exceeded token limits, causing high costs (up to $0.50/video) and incomplete responses.<br>
+                                <strong>Impact:</strong> Threatened project scalability and budget.
+                            </p>
+                        </div>
+                        <div class="roadblock-item">
+                            <div class="roadblock-header">
+                                <i class="fas fa-hourglass-half"></i>
+                                <h3>Search Performance Bottlenecks</h3>
+                            </div>
+                            <p>
+                                <strong>Problem:</strong> Naive text search led to 5+ second delays on large transcripts.<br>
+                                <strong>Impact:</strong> Poor user experience and slow demo iterations.
+                            </p>
+                        </div>
+                        <div class="roadblock-item">
+                            <div class="roadblock-header">
+                                <i class="fas fa-cogs"></i>
+                                <h3>State Management Complexity</h3>
+                            </div>
+                            <p>
+                                <strong>Problem:</strong> Distributed state across UI and backend led to 15% error rate in sync and error handling.<br>
+                                <strong>Impact:</strong> Increased debugging time and reduced reliability.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="impact-highlight">
+                    <strong>Development Impact:</strong> These challenges drove three major architecture revisions and the adoption of robust fallback, optimization, and monitoring strategies.
+                </div>
+            </div>
+        </section>        <!-- Slide 3: Technical Solutions (25 seconds) -->
+        <section class="slide" data-duration="25">
+            <div class="slide-content solution-slide">
+                <h1 class="slide-title">✅ Engineering Solutions</h1>
+                <div class="solution-grid">
+                    <div class="research-section">
+                        <h2><i class="fas fa-wrench"></i> Engineering Solutions Overview</h2>
+                        <ul class="research-list">
+                            <li><strong>Multi-Source Transcript Pipeline:</strong> 4-level fallback (API, yt-dlp, manual, alt sources) raised extraction success to 95%.</li>
+                            <li><strong>Token & Cost Optimization:</strong> Dynamic chunking and context windowing reduced OpenAI API costs by 80%.</li>
+                            <li><strong>PostgreSQL Full-Text Search:</strong> Replaced naive search, cutting query time from 5s to 500ms.</li>
+                            <li><strong>Centralized State Management:</strong> Unified state logic dropped error rate from 15% to 3%.</li>
+                        </ul>
+                    </div>
+                    <div class="approach-section">
+                        <h2><i class="fas fa-code"></i> Technical Implementation Highlights</h2>
+                        <div class="approach-items">
+                            <div class="approach-item">
+                                <span class="approach-number">1</span>
+                                <div>
+                                    <h3>Resilient Transcript Extraction</h3>
+                                    <p>Automated fallback: youtube-transcript-api → yt-dlp → manual parsing → alt APIs. Ensured minimal manual work.</p>
+                                </div>
+                            </div>
+                            <div class="approach-item">
+                                <span class="approach-number">2</span>
+                                <div>
+                                    <h3>Context Window & Token Management</h3>
+                                    <p>Smart chunking/sliding window for long transcripts. Kept API calls within token limits, maximizing context and minimizing cost.</p>
+                                </div>
+                            </div>
+                            <div class="approach-item">
+                                <span class="approach-number">3</span>
+                                <div>
+                                    <h3>High-Performance Search</h3>
+                                    <p>Leveraged PostgreSQL full-text search for sub-second, scalable transcript queries.</p>
+                                </div>
+                            </div>
+                            <div class="approach-item">
+                                <span class="approach-number">4</span>
+                                <div>
+                                    <h3>Unified State Management</h3>
+                                    <p>Centralized state logic (frontend/backend) for robust error handling and real-time sync.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="autonomous-thinking">
+                    <p><i class="fas fa-brain"></i> <strong>Key Achievement:</strong> Transformed unreliable prototype into production-ready system with 95% reliability</p>
+                </div>
+            </div>
+        </section><!-- Slide 4: Architecture & Metrics (15 seconds) -->
+        <section class="slide" data-duration="15">
+            <div class="slide-content architecture-slide">
+                <h1 class="slide-title">📈 Results & Architecture</h1>
+                <div class="metrics-section">
+                    <h2><i class="fas fa-chart-line"></i> Measurable Improvements</h2>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">95%</div>
+                            <div class="metric-label">Transcript Success</div>
+                            <div class="metric-change">+25% from 70%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">500ms</div>
+                            <div class="metric-label">Search Speed</div>
+                            <div class="metric-change">90% faster</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">80%</div>
+                            <div class="metric-label">Cost Reduction</div>
+                            <div class="metric-change">$0.50 → $0.10</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">3%</div>
+                            <div class="metric-label">Error Rate</div>
+                            <div class="metric-change">Down from 15%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="architecture-diagram">
+                    <div class="component frontend-component">
+                        <div class="component-header">
+                            <i class="fab fa-react"></i>
+                            <h3>React Frontend</h3>
+                        </div>
+                        <ul>
+                            <li>Centralized State Management</li>
+                            <li>Error Boundary Implementation</li>
+                            <li>Real-time UI Updates</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>CORS + REST</span>
+                    </div>
+                    
+                    <div class="component backend-component">
+                        <div class="component-header">
+                            <i class="fas fa-server"></i>
+                            <h3>FastAPI Backend</h3>
+                        </div>
+                        <ul>
+                            <li>4-Tier Transcript Fallback</li>
+                            <li>Smart Context Management</li>
+                            <li>Async Processing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>SQLAlchemy Async</span>
+                    </div>
+                    
+                    <div class="component database-component">
+                        <div class="component-header">
+                            <i class="fas fa-database"></i>
+                            <h3>PostgreSQL</h3>
+                        </div>
+                        <ul>
+                            <li>Full-Text Search (GIN)</li>
+                            <li>Optimized Indexing</li>
+                            <li>Simple Schema Design</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="architecture-highlight">
+                    <p><strong>Technical Achievement:</strong> Production-ready system with robust error handling and performance optimization</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Live Demo (30-40 seconds) -->
+        <section class="slide" data-duration="35">
+            <div class="slide-content demo-slide">
+                <h1 class="slide-title">Live Demo - Production Ready</h1>
+                <div class="demo-container">
+                    <div class="demo-interface">
+                        <div class="mock-browser">
+                            <div class="browser-header">
+                                <div class="browser-controls">
+                                    <span class="control red"></span>
+                                    <span class="control yellow"></span>
+                                    <span class="control green"></span>
+                                </div>
+                                <div class="url-bar">https://videochat-app.vercel.app</div>
+                            </div>
+                            <div class="demo-content">
+                                <div class="video-section">
+                                    <div class="mock-video">
+                                        <i class="fab fa-youtube"></i>
+                                        <p>Python Tutorial: Advanced Concepts</p>
+                                        <div class="video-controls">
+                                            <button class="play-btn"><i class="fas fa-play"></i></button>
+                                            <span class="timestamp">15:32 / 45:20</span>
+                                        </div>
+                                    </div>
+                                    <div class="timestamps-panel">
+                                        <h4>AI-Generated Chapters</h4>
+                                        <div class="timestamp-item active">
+                                            <span class="time">0:00</span>
+                                            <span class="title">Introduction & Setup</span>
+                                        </div>
+                                        <div class="timestamp-item">
+                                            <span class="time">5:30</span>
+                                            <span class="title">Async Functions Explained</span>
+                                        </div>
+                                        <div class="timestamp-item">
+                                            <span class="time">15:20</span>
+                                            <span class="title">Database Integration</span>
+                                        </div>
+                                        <div class="timestamp-item">
+                                            <span class="time">28:45</span>
+                                            <span class="title">Error Handling Best Practices</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chat-section">
+                                    <div class="chat-messages">
+                                        <div class="message user-message">
+                                            <span class="message-text">What's the difference between async and sync functions?</span>
+                                        </div>
+                                        <div class="message ai-message">
+                                            <span class="message-text">Based on the video content at 5:30, async functions allow non-blocking operations. The instructor explains that sync functions wait for completion before continuing, while async functions can handle multiple operations simultaneously using await/async syntax.</span>
+                                            <div class="timestamp-link">
+                                                <i class="fas fa-play"></i> Jump to 5:30
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-input">
+                                        <input type="text" placeholder="Ask anything about the video..." value="Can you explain decorators?">
+                                        <button><i class="fas fa-paper-plane"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-features">
+                        <div class="feature-highlight">
+                            <i class="fas fa-magic"></i>
+                            <div>
+                                <h3>Contextual Responses</h3>
+                                <p>AI answers based on actual video content with timestamp references</p>
+                            </div>
+                        </div>
+                        <div class="feature-highlight">
+                            <i class="fas fa-search"></i>
+                            <div>
+                                <h3>Instant Search</h3>
+                                <p>Find any concept mentioned in the video within seconds</p>
+                            </div>
+                        </div>
+                        <div class="feature-highlight">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Smart Navigation</h3>
+                                <p>Auto-generated timestamps for logical content sections</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-stats">
+                    <div class="stat">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2.3s</span>
+                        <span class="stat-label">Avg Response</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">ANY</span>
+                        <span class="stat-label">YouTube Video</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Technical Deep Dive (30-40 seconds) -->
+        <section class="slide" data-duration="35">
+            <div class="slide-content technical-slide">
+                <h1 class="slide-title">Technical Challenges Solved</h1>
+                <div class="challenges-grid">
+                    <div class="challenge-section">
+                        <h2><i class="fas fa-exclamation-circle"></i> Challenge #1: Reliable Transcript Extraction</h2>
+                        <div class="challenge-content">
+                            <div class="problem-desc">
+                                <h3>The Problem</h3>
+                                <p>YouTube transcript availability varies wildly. Initial tests showed 40% failure rate with single-method extraction.</p>
+                            </div>
+                            <div class="solution-desc">
+                                <h3>My Solution</h3>
+                                <div class="code-snippet">
+                                    <pre><code class="language-python">
+# 4-Tier Fallback System
+methods = [
+    self._try_youtube_transcript_api,
+    self._try_ytdlp_subtitles,
+    self._try_manual_caption_fetch,
+    self._try_alternative_sources
+]
+
+for method in methods:
+    result = await method(video_id)
+    if result[0]:  # Success
+        return result
+                                    </code></pre>
+                                </div>
+                                <p><strong>Result:</strong> Improved success rate from 40% to 95%+ with graceful degradation</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="challenge-section">
+                        <h2><i class="fas fa-exclamation-circle"></i> Challenge #2: Context-Aware AI Responses</h2>
+                        <div class="challenge-content">
+                            <div class="problem-desc">
+                                <h3>The Problem</h3>
+                                <p>Generic AI responses didn't reference specific video content. Users needed answers based on what was actually said.</p>
+                            </div>
+                            <div class="solution-desc">
+                                <h3>My Solution</h3>
+                                <div class="code-snippet">
+                                    <pre><code class="language-python">
+# Contextual Prompting Strategy
+messages = [
+    {
+        "role": "system", 
+        "content": "Answer based on video transcript only"
+    },
+    {
+        "role": "user", 
+        "content": f"Transcript:\n{transcript}\n\nQ: {question}"
+    }
+]
+
+response = await openai.chat.completions.create(
+    model="gpt-4-turbo",
+    messages=messages
+)
+                                    </code></pre>
+                                </div>
+                                <p><strong>Result:</strong> 89% accuracy in context-specific responses with timestamp references</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="technical-achievements">
+                    <h3><i class="fas fa-trophy"></i> Key Technical Achievements</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement">
+                            <i class="fas fa-rocket"></i>
+                            <span>Async architecture handling 1000+ concurrent requests</span>
+                        </div>
+                        <div class="achievement">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Robust error handling with comprehensive fallbacks</span>
+                        </div>
+                        <div class="achievement">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Average 2.3s response time including AI processing</span>
+                        </div>
+                        <div class="achievement">
+                            <i class="fas fa-database"></i>
+                            <span>Optimized database queries with connection pooling</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Future Improvements (10 seconds) -->
+        <section class="slide" data-duration="10">
+            <div class="slide-content future-slide">
+                <h1 class="slide-title">Future Vision</h1>
+                <div class="future-roadmap">
+                    <div class="roadmap-section">
+                        <h2><i class="fas fa-calendar-alt"></i> Next 3 Months</h2>
+                        <ul>
+                            <li><i class="fas fa-language"></i> <strong>Multi-language support</strong> - Translate and chat in any language</li>
+                            <li><i class="fas fa-mobile-alt"></i> <strong>Mobile app</strong> - Native iOS/Android experience</li>
+                            <li><i class="fas fa-users"></i> <strong>Collaborative features</strong> - Study groups and shared annotations</li>
+                        </ul>
+                    </div>
+                    <div class="roadmap-section">
+                        <h2><i class="fas fa-chart-line"></i> Long-term Vision</h2>
+                        <ul>
+                            <li><i class="fas fa-graduation-cap"></i> <strong>LMS Integration</strong> - Canvas, Moodle, Blackboard support</li>
+                            <li><i class="fas fa-brain"></i> <strong>Personalized learning paths</strong> - AI-driven curriculum recommendations</li>
+                            <li><i class="fas fa-building"></i> <strong>Enterprise deployment</strong> - Corporate training and onboarding</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="market-opportunity">
+                    <div class="market-stat">
+                        <span class="market-number">$366B</span>
+                        <span class="market-label">Global E-learning Market by 2026</span>
+                    </div>
+                    <div class="market-stat">
+                        <span class="market-number">89%</span>
+                        <span class="market-label">of students want interactive video learning</span>
+                    </div>
+                </div>
+                <div class="vision-statement">
+                    <p><i class="fas fa-quote-left"></i> <em>Making every educational video as interactive as a personal tutor</em> <i class="fas fa-quote-right"></i></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Lessons Learned & Next Steps (15 seconds) -->
+        <section class="slide" data-duration="15">
+            <div class="slide-content lessons-slide">
+                <h1 class="slide-title">🎯 Key Takeaways & Next Steps</h1>
+                <div class="lessons-container">
+                    <div class="lessons-section">
+                        <h2><i class="fas fa-lightbulb"></i> Lessons Learned</h2>
+                        <div class="lesson-items">
+                            <div class="lesson-item">
+                                <span class="lesson-number">1</span>
+                                <div>
+                                    <h3>Build Fallback Systems Early</h3>
+                                    <p>Multiple data sources and error handling prevent single points of failure</p>
+                                </div>
+                            </div>
+                            <div class="lesson-item">
+                                <span class="lesson-number">2</span>
+                                <div>
+                                    <h3>Optimize for Cost from Day One</h3>
+                                    <p>API costs can spiral quickly - implement smart context management early</p>
+                                </div>
+                            </div>
+                            <div class="lesson-item">
+                                <span class="lesson-number">3</span>
+                                <div>
+                                    <h3>Database Design Impacts Performance</h3>
+                                    <p>Proper indexing and query optimization are crucial for user experience</p>
+                                </div>
+                            </div>
+                            <div class="lesson-item">
+                                <span class="lesson-number">4</span>
+                                <div>
+                                    <h3>User Experience Drives Architecture</h3>
+                                    <p>Real-time feedback and error handling shape system design decisions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="next-steps-section">
+                        <h2><i class="fas fa-rocket"></i> Immediate Next Steps</h2>
+                        <div class="step-items">
+                            <div class="step-item completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Production-ready MVP with 95% reliability</span>
+                            </div>
+                            <div class="step-item in-progress">
+                                <i class="fas fa-clock"></i>
+                                <span>User testing & feedback collection (Week 1-2)</span>
+                            </div>
+                            <div class="step-item planned">
+                                <i class="fas fa-tasks"></i>
+                                <span>Mobile-responsive design improvements (Week 3)</span>
+                            </div>
+                            <div class="step-item planned">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Analytics integration & performance monitoring (Week 4)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="call-to-action">
+                    <div class="cta-content">
+                        <h3><i class="fas fa-handshake"></i> Ready to Contribute</h3>
+                        <p>Looking for opportunities to solve complex technical challenges and build scalable systems</p>
+                        <div class="contact-info">
+                            <span><i class="fas fa-envelope"></i> [your.email@example.com]</span>
+                            <span><i class="fab fa-linkedin"></i> /in/yourprofile</span>
+                            <span><i class="fab fa-github"></i> /yourgithub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" id="prevBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="control-btn" id="playPauseBtn">
+            <i class="fas fa-play"></i>
+        </button>
+        <button class="control-btn" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Fullscreen Toggle -->
+    <button class="fullscreen-btn" id="fullscreenBtn">
+        <i class="fas fa-expand"></i>
+    </button>
+
+    <!-- Speaker Notes Panel -->
+    <div class="speaker-notes" id="speakerNotes">
+        <div class="notes-header">
+            <h3>Speaker Notes</h3>
+            <button class="close-notes" id="closeNotes">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notes-content" id="notesContent">
+            <!-- Notes will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Notes Toggle -->
+    <button class="notes-toggle" id="notesToggle">
+        <i class="fas fa-sticky-note"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

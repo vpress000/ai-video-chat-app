@@ -1,0 +1,59 @@
+---
+
+## 🧑‍💻 Slide 1: Team Introduction (10 sec)
+- Name and brief background
+- Current status: school, job hunt, interview count
+- Keep it short—just context
+
+---
+
+## 🧠 Slide 2: Problem Statement (10 sec)
+- Define the target customer clearly
+- Explain the specific challenge you're solving
+- Show the real-world impact
+- Mention your research to validate the problem
+
+---
+
+## 💡 Slide 3: Solution Overview (20 sec)
+- Describe your approach and methodology
+- Highlight any independent research
+- Note alternative solutions you considered
+- Emphasize autonomy and proactive work
+
+---
+
+## 🧱 Slide 4: Architecture Diagram (10 sec)
+- Include 3 simple system components
+- Clean and uncluttered design
+- Visualize core flow without too many logos or APIs
+
+---
+
+## 🎬 Slide 5: Live Demo (30–40 sec)
+- Demonstrate working product
+- Use a deployed/production link
+- Focus on smooth user experience
+- Highlight key outcomes or features
+
+---
+
+## 🔍 Slide 6: Code Walkthrough (30–40 sec)
+- Showcase the 2 hardest problems you tackled
+- Explain technical challenges and how you solved them
+- Emphasize depth in thinking and troubleshooting
+
+---
+
+## 🚀 Slide 7: Future Improvements (10 sec)
+- Discuss what you'd enhance with more time
+- Show forward-thinking and long-term vision
+
+---
+
+## 💼 Final Slide: Career Connection
+- Highlight the importance of research, demo, and presentation
+- Convey confidence, energy, and passion
+- End with impact: technical skills open doors, presentation skills earn promotions
+
+---
